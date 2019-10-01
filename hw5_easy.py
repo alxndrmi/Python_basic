@@ -8,30 +8,28 @@ import sys
 import shutil
 
 
-def create_dirs():
+def create_dir(path):
     try:
-        for i in range(1, 10):
-            dir_path = os.path.join(os.getcwd(), 'dir_{}'.format(i))
-            os.mkdir(dir_path)
+        os.mkdir(path)
+        print('Успешно создано.')
     except FileExistsError:
-        print('Folders already exist')
+        print('Невозможно создать папку. Нет такой папки.')
 
-def delete_dirs():
+
+def delete_dir(path):
     try:
-        for i in range(1, 10):
-            dir_path = os.path.join(os.getcwd(), 'dir_{}'.format(i))
-            os.removedirs(dir_path)
+        os.removedirs(path)
+        print('Успешно удалено.')
     except FileNotFoundError:
-        print('No such folders')
+        print('Невозможно удалить папку. Нет такой папки.')
 
 
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
 
 def show_folders():
-    for file_or_folder in os.listdir(os.getcwd()):
-        file_or_folder_path = os.path.join(os.getcwd(), file_or_folder)
-        if os.path.isdir(file_or_folder_path):
+    for file_or_folder in os.listdir():
+        if os.path.isdir(file_or_folder):
             print(file_or_folder)
 
 
@@ -47,9 +45,11 @@ def copy_file():
     shutil.copy(__file__, copy_file_name)
 
 
-if __name__ == '__mail__':
-    create_dirs()
-    delete_dirs()
+if __name__ == '__main__':
+    for i in range(1, 10):
+        dir_path = os.path.join(os.getcwd(), 'dir_{}'.format(i))
+        create_dir(dir_path)
+        delete_dir(dir_path)
     show_folders()
     copy_file()
 

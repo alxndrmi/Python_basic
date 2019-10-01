@@ -14,3 +14,33 @@
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
 
+import os
+from hw5_easy import show_folders, delete_dir, create_dir
+
+
+
+while True:
+    do_command = int(input('Выберите действие (введите цифру):\n'
+                           '1. Перейти в папку\n'
+                           '2. Просмотреть содержимое текущей папки (только папки)\n'
+                           '3. Удалить папку\n'
+                           '4. Создать папку\n'
+                           '5. Показать, в какой я папке\n'
+                           '6. Выход\n\n'))
+
+    if do_command == 6:
+        break
+    elif do_command == 1:
+        try:
+            os.chdir(input('Введите имя 5эадрес папки, в которую хотите перейти: '))
+            print('Успешно перешел.')
+        except FileNotFoundError:
+            print('Невозможно перейти. Нет такой папки.')
+    elif do_command == 2:
+        show_folders()
+    elif do_command == 3:
+        delete_dir(input('Введите имя или адрес папки, которую хотите удалить: '))
+    elif do_command == 4:
+        create_dir(input('Введите имя или адрес папки, которую хотите создать: '))
+    elif do_command == 5:
+        print(os.getcwd())
